@@ -34,4 +34,4 @@ month = "%02d" % Time.now.month #start from the current month
 end
 
 
-File.open("#{File.dirname(__FILE__)}/ broadcasts.json", 'w') {|f| f.write(broadcasts.to_json) }
+File.open("#{File.dirname(__FILE__)}/broadcasts.json", 'w') {|f| f.write(broadcasts.to_json) }
