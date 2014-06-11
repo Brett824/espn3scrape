@@ -2,6 +2,7 @@ require 'rubygems'
 require 'nokogiri'
 require 'open-uri'
 require 'net/http'
+require 'date'
 require 'json'
 
 broadcasts = []
@@ -17,9 +18,10 @@ month = "%02d" % Time.now.month #start from the current month
 	events = doc.css("section#CR").css("ul.league-obj").css("li") #could make this 1 css selector, clearer to chain them imo
 
 	events.each do |e|
-		puts "#{e.children[0].text} #{e.children[1].text} #{e.children[3].text[0..-34]}"
+		d = Date.strptime("#{e.children[0].text.strip}/#{Time.now.year}", "%m/%d/%Y").strftime("%Y-%m-%d")
+		puts "#{d} #{e.children[1].text} #{e.children[3].text[0..-34]}"
 		b = {}
-		b["date"] = e.children[0].text
+		b["date"] = d
 		b["time"] = e.children[1].text
 		b["name"] = e.children[3].text[0..-34]
 		broadcasts.push(b)
@@ -32,4 +34,4 @@ month = "%02d" % Time.now.month #start from the current month
 end
 
 
-File.open('broadcasts.json', 'w') {|f| f.write(broadcasts.to_json) }
+File.open("#{File.dirname(__FILE__)}/ broadcasts.json", 'w') {|f| f.write(broadcasts.to_json) }

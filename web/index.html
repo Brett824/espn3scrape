@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<title>ESPN3 Cricket Fixtures</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/styles.css" rel="stylesheet">
+
+	</head>
+
+	<body>
+
+		<div class="container">
+			<h1>Fixtures</h1>
+			<table class="table table-bordered table-striped">
+				<thead>
+					<tr>
+						<th>Match</th>
+						<th>Date</th>
+						<th>Time</th>
+					</tr>
+				</thead>
+				<tbody id="fixtures-table">
+				</tbody>
+			</table>
+		</div>
+
+		<div class="navbar navbar-default navbar-fixed-bottom">
+
+			<div class="container">
+				<p class="navbar-text">By: Brett C.S. | Source: <a href="http://espn.go.com/watchespn/">WatchESPN</a></p>
+			</div>
+
+		</div>
+		<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+		<script src="js/bootstrap.js"></script>
+		<script type="text/javascript">
+			$(function() {
+			 	$.getJSON("http://thecomedicvoid.com/cricket/broadcasts.json", function(json) {
+					$.each(json, function(i,fixture) {
+						var data_tr ="<tr><td>" + fixture["name"] + "</td><td>" + fixture["date"] + "</td><td>" + fixture["time"] + "</td></tr>";
+						$(data_tr).appendTo("#fixtures-table");
+					});
+				});
+		 	});
+		</script>
+
+	</body>
+
+</html>
