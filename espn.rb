@@ -27,10 +27,6 @@ month = "%02d" % Time.now.month #start from the current month
 		broadcasts.push(b)
 	end
 
-	#puts "#{i}"
-
-	#STDOUT.flush
-
 end
 
 
