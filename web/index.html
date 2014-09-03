@@ -16,7 +16,7 @@
 
 	<body>
 
-		<div class="container">
+		<div class="container" ng-app="" ng-controller="fixturesController">
 			<h1>Fixtures</h1>
 			<table class="table table-bordered table-striped">
 				<thead>
@@ -27,6 +27,11 @@
 					</tr>
 				</thead>
 				<tbody id="fixtures-table">
+					<tr ng-repeat="x in fixtures">
+				    <td>{{ x.name }}</td>
+				    <td>{{ x.date }}</td>
+				    <td>{{ x.time }}</td>
+				  </tr>
 				</tbody>
 			</table>
 		</div>
@@ -38,18 +43,16 @@
 			</div>
 
 		</div>
+
 		<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 		<script src="js/bootstrap.js"></script>
-		<script type="text/javascript">
-			$(function() {
-			 	$.getJSON("http://thecomedicvoid.com/cricket/broadcasts.json", function(json) {
-					$.each(json, function(i,fixture) {
-						var data_tr ="<tr><td>" + fixture["name"] + "</td><td>" + fixture["date"] + "</td><td>" + fixture["time"] + "</td></tr>";
-						$(data_tr).appendTo("#fixtures-table");
-					});
-				});
-		 	});
+		<script>
+			function fixturesController($scope,$http) {
+			  $http.get("http://thecomedicvoid.com/cricket/broadcasts.json")
+			  .success(function(response) {$scope.fixtures = response;});
+			}
 		</script>
+		<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script>
 
 	</body>
 
