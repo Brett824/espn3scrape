@@ -28,10 +28,10 @@
 				</thead>
 				<tbody id="fixtures-table">
 					<tr ng-repeat="x in fixtures">
-						<td>{{ x.name }}</td>
-						<td>{{ x.date }}</td>
-						<td>{{ x.time }}</td>
-					</tr>
+				    <td>{{ x.name }}</td>
+				    <td>{{ x.date }}</td>
+				    <td>{{ x.time }}</td>
+				  </tr>
 				</tbody>
 			</table>
 		</div>
@@ -48,8 +48,8 @@
 		<script src="js/bootstrap.js"></script>
 		<script>
 			function fixturesController($scope,$http) {
-				$http.get("http://thecomedicvoid.com/cricket/broadcasts.json")
-				.success(function(response) {$scope.fixtures = response;});
+			  $http.get("http://thecomedicvoid.com/cricket/broadcasts.json")
+			  .success(function(response) {$scope.fixtures = response;});
 			}
 		</script>
 		<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script>

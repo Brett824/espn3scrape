@@ -29,7 +29,7 @@ month = "%02d" % Time.now.month #start from the current month
 
 	#puts "#{i}"
 
-	STDOUT.flush
+	#STDOUT.flush
 
 end
 
