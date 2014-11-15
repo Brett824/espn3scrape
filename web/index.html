@@ -2,14 +2,15 @@
 <html>
 
 	<head>
+		
 		<title>ESPN3 Cricket Fixtures</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link href="css/bootstrap.min.css" rel="stylesheet">
 		<style>
-				body {
-					padding-bottom: 60px;
-				}
-			</style>
+			body {
+				padding-bottom: 60px;
+			}
+		</style>
 		<link href="css/styles.css" rel="stylesheet">
 
 	</head>
@@ -21,6 +22,7 @@
 			<table class="table table-bordered table-striped">
 				<thead>
 					<tr>
+						<th></th>
 						<th>Match</th>
 						<th>Date</th>
 						<th>Time</th>
@@ -28,6 +30,7 @@
 				</thead>
 				<tbody id="fixtures-table">
 					<tr ng-repeat="x in fixtures">
+						<td align="center"><img ng-src="{{ x.site }}"/></td>
 						<td>{{ x.name }}</td>
 						<td>{{ x.date }}</td>
 						<td>{{ x.time }}</td>
@@ -39,20 +42,22 @@
 		<div class="navbar navbar-default navbar-fixed-bottom">
 
 			<div class="container">
-				<p class="navbar-text">By: Brett C.S. | Source: <a href="http://espn.go.com/watchespn/">WatchESPN</a></p>
+				<p class="navbar-text">By: Brett C.S. | Source: <a href="http://espn.go.com/watchespn/">WatchESPN</a>, <a href="http://www.willow.tv/EventMgmt/fixtures.asp">Willow TV</a></p>
 			</div>
 
 		</div>
 
-		<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+		<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 		<script src="js/bootstrap.js"></script>
 		<script>
 			function fixturesController($scope,$http) {
-				$http.get("http://thecomedicvoid.com/cricket/broadcasts.json")
-				.success(function(response) {$scope.fixtures = response;});
+				$http.get("broadcasts.json")
+				.success(function(response) {
+					$scope.fixtures = response;
+				});
 			}
 		</script>
-		<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script>
+		<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script>
 
 	</body>
 
